@@ -1,0 +1,675 @@
+%underline{
+    content: "";
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    
+    transform: scaleX(0);
+    transition: all .4s;
+}
+
+$color-gray-light: #eeeeee;
+
+.hero{
+    background-image: url('../images/heroimg.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;    
+    z-index: -100;
+
+    &__content{
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 19rem;       
+        @include responsive(500px){
+            margin-top: 17rem;
+        } 
+    }
+    &__heading{
+        font-size: 5.5rem;
+        text-align: center;
+        line-height: 8.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba($color-white, .2);
+        font-weight: 600;
+        opacity: 0;
+        animation: fromLeft 1s forwards .5s;
+
+        @include responsive(1274px){
+            font-size: 4.5rem;
+            line-height: 1.3;
+        }
+        @include responsive(500px){
+            font-size: 3.2rem;
+            margin: 0 2rem;
+            br{
+                display: none;
+            }
+        }
+    }
+    &__subtitle{
+        font-size: 2.2rem;
+        text-align: center;
+        font-weight: 100;
+        margin: 2rem;
+        opacity: 0;
+        margin-bottom: 3rem;
+        animation: fromRight 1s forwards 1s;
+        @include responsive(950px){
+            font-size: 1.8rem;
+        }
+        @include responsive(500px){
+            font-size: 1.6rem;
+            margin: 2rem 2rem;
+            br{
+                display: none;
+            }
+        }
+    }
+}
+
+.header{
+    padding: 4rem 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba($color: #000000, $alpha: .3);
+    animation: fromTop 1s forwards;
+    opacity: 0;
+    @include responsive(1000px){
+        padding: 3rem 11rem;
+    }
+
+    @include responsive(750px){
+        padding: 3.2rem 3rem;
+    }
+    
+
+    &__brand{
+        img{
+            height: 4.5rem;
+        }
+    }
+    &__nav{
+        display: flex;
+        align-items: center;
+        @include responsive(1000px){
+            flex-direction: column;
+            display: none;
+            align-items: flex-end
+        }
+    }
+    &__item{
+        list-style: none;
+        position: relative;
+        @include responsive(1000px){
+           text-align: right;
+           margin-top: 1.2rem;
+        }
+        
+        &:not(:last-child){
+            margin-right: 5rem;
+            @include responsive(1000px){
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+        &::after{
+            @extend %underline;
+            background-color: $color-primary;
+            bottom: -.2rem;
+            transform-origin: left;
+        }
+        &::before{
+            @extend %underline;
+            background-color: $color-secondary;
+            bottom: -.6rem;
+            transform-origin: right
+        }
+        &:hover::after{
+            transform: scaleX(1);
+        }
+        &:hover::before{
+            transform: scaleX(1);
+        }
+    }
+    &__link{
+        &:link, &:visited{
+            color: white;
+            text-transform: uppercase;   
+            text-decoration: none;       
+            font-size: 1.6rem;  
+        }
+    }
+}
+
+.me{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__wrap{
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__img{
+        height: 15rem;
+        border: .8rem solid white;
+        border-radius: 50%;
+        @include boxShadow(10px , .2);
+        margin-bottom: 3rem;
+    }
+    &__name{
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 100;
+        margin-bottom: 0.5rem;
+    }
+    &__sub{
+        font-size: 1.7rem;
+        font-weight: 100;
+        text-align: center;
+    }
+    &__desc{
+        text-align: center;
+        font-size: 1.7rem;
+        width: 90%;
+        margin-bottom: 4rem;
+    }
+
+    &__fone{
+        display: flex;
+        align-items: center;
+
+        &:link{
+            color: $color-secondary;
+            text-decoration: none;
+        }
+        img{
+            height: 6rem;
+            margin-right: 1.2rem;
+            animation: shake .4s infinite linear;
+        }
+        h6{
+            font-weight: 700;
+            font-size: 2rem;
+            transition: all .3s;
+            &:hover{
+                color: $color-primary
+            }
+        }
+    }
+}
+
+%grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(40rem, 45rem));
+    grid-column-gap: 4rem;
+    grid-row-gap: 4rem;
+
+    @include responsive(1274px){
+        grid-template-columns: repeat(2, 50rem);
+        grid-row-gap: 7rem;
+    }
+    @include responsive(1000px){
+        grid-template-columns: repeat(1, 1fr);
+        grid-row-gap: 7rem;
+    }
+}
+
+.price{
+    background-color: #f5f5f5;
+    padding: 6rem 0;
+
+    &__wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__table{
+        @extend %grid;
+
+        margin-top: 8rem;
+    }
+    
+    &__card{
+        background-color: white;        
+        padding: 4rem 2rem;
+        padding-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all .3s;
+        @include boxShadow(10px, .2);
+        &--landing{
+            border-top: .8rem $color-secondary solid;
+        }
+        &--awesome{
+            border-top: .8rem #b922e3 solid;
+        }
+        &--professional{
+            border-top: .8rem $color-primary solid;
+        }
+        &:hover{
+            transform: translateY(-1.5rem);
+        }
+    }
+
+    &__star{
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: .8rem solid $color-secondary;
+        height: 9.3rem;
+        margin-top: -10rem;
+        &--landing{
+            border: .8rem $color-secondary solid;
+        }
+        &--awesome{
+            border: .8rem #b922e3 solid;
+        }
+        &--professional{
+            border: .8rem $color-primary solid;
+        }
+    }
+
+    &__card-title{
+        color: $color-secondary;
+        text-transform: uppercase;
+        font-size: 2.9rem;
+        margin: 2rem;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: .2);
+        width: 100%;
+        text-align: center;
+        padding-bottom: 0.7rem;
+        font-weight: 600;
+    }
+    &__benefits{
+        width: 100%;
+    }
+    &__benefit{
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;  
+        padding: 1.4rem 0;
+    }
+    &__arr{
+        height: 1.5rem;
+        margin-right: 1.5rem;
+    }
+    &__pricing{
+        text-align: center;
+        width: 100%;
+        padding: 1.4rem 0;
+        text-transform: uppercase;
+        font-size: 2rem;
+        color: white;
+        font-weight: 600;
+        margin-top: 1rem;
+
+        &--landing{
+            background-color: $color-secondary;
+        }
+        &--awesome{
+            background-color: #b922e3;
+        }
+        &--professional{
+            background-color: $color-primary
+        }
+    }
+
+    &__more{
+        .title{
+            margin-top: 5rem;
+            color: $color-secondary;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h6{
+            font-size: 1.7rem;
+            font-weight: 100;
+            text-align: center;
+        }
+
+        
+    }
+    &__figure{
+        padding: 2rem;
+        background-color: $color-primary;
+        color: white;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover{
+            transform: scale(1.05);
+            @include boxShadow(10px, .2);
+        }
+    }
+}
+
+
+.process{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12rem 0 !important;
+
+    .title{
+        margin-bottom: 2rem;
+    }
+
+    &__sub{
+        width: 80%;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+    }
+
+    &__line{
+        display: flex;
+        align-items: flex-start;
+        margin-top: 4rem;
+        justify-content: space-around;
+        width: 100%;
+
+        @include responsive(1250px){
+            flex-wrap: wrap
+        }
+        @include responsive(950px){
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    &__step{
+        text-align: center;
+        p{
+            font-size: 1.7rem
+        }
+        @include responsive(950px){
+            margin-bottom: 3rem;
+        }
+    }
+    &__img{
+        height: 17rem;
+        width: 17rem;
+        margin-bottom: 1.5rem;
+        @include responsive(950px){
+            height: 20rem;
+            width: 20rem;
+            
+        }
+    }
+    &__title{
+        font-size: 2.3rem;
+        font-weight: 100;
+        color: $color-secondary;
+        text-transform: uppercase;
+    }
+
+    &__next{
+        transform: translateY(7rem);
+        @include responsive(950px){
+            display: none;
+        }
+    }
+
+}
+
+.showcase{ 
+    padding: 10rem 6rem;
+    padding-top: 8rem;
+    background-image: url('../images/bgIMG.png'), linear-gradient(90deg, rgba($color-primary, 1));
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+    @include responsive(500px){
+        padding: 7rem 6rem;
+    }
+
+    .title{
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    .process__sub{
+        color: white;
+        margin-bottom: 6rem;
+    }
+
+    &__list{
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        padding: 10rem 0;
+        border-top: 1px solid rgba($color-white, .3);
+        border-bottom: 1px solid rgba($color-white, .3);
+        overflow: hidden;
+        @include responsive(500px){
+            padding: 7rem 0;
+        }
+    }
+    a{
+        &:link, &:visited{
+            text-decoration: none;
+            color: #444;
+        }
+    }
+    &__card{   
+        background-color: rgb(248, 248, 248);
+        padding-bottom: 2rem;
+        text-align: left;
+        transition: all .3s;
+        width: 42.3rem;
+
+        @include responsive(1750px){
+            width: 55rem;
+        }
+        @include responsive(500px){
+            width: auto;
+        }
+
+        h3{
+            margin-left: 2rem;
+            text-transform: uppercase;
+            position: relative;
+            &::after{
+                content: "";
+                height: 4px;
+                width: 2.4rem;
+                background-color: $color-secondary;
+                position: absolute;
+                bottom: -.5rem;
+                left: 0;
+            }
+        }
+        p{
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+        &:hover{
+            transform: translateY(-.8rem);
+            @include boxShadow(15px, .3);
+        }
+    }
+
+    &__img{
+        clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
+        margin-bottom: 1rem;
+        object-position: center;
+
+        @include responsive(1750px){
+            width: 100%;
+        }
+    }
+
+    &__left{
+        @extend %arrow;
+        left: 1.5rem;
+    }
+    &__right{
+        @extend %arrow;
+        right: 1.5rem;
+    }
+}
+
+%arrow{
+    position: absolute;
+    top: 44rem;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover{
+        transform: scale(1.3);
+    }
+    @include responsive(500px){
+        top: 44rem;
+    }
+}
+
+%formTextStyle{
+    font-size: 1.6rem;
+    color: #666;
+    font-family: $font-primary;
+}
+
+.contact{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, auto);
+
+    &__left{
+
+        padding: 7rem 6rem;
+        grid-column: 1/6;
+        grid-row: 1/2;
+        background-image: linear-gradient(90deg, rgba($color-gray-light, .3) 0%), url(../images/bg_footer.png.jpg) ;
+        background-position: center;
+        background-size: cover;
+        z-index: 1;
+
+        @include responsive(950px){
+            padding: 5.5rem 5rem;
+        }
+        @include responsive(750px){
+            grid-column: 1/9;
+        }
+        @include responsive(500px){
+            padding: 3rem;
+        }
+
+        .title{
+            margin-bottom: 3.5rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+    }
+
+    &__forms{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__form{
+        padding: 2.5rem 1rem;
+        background-color: white;
+        border: none;
+        border-bottom: .4rem solid $color-primary;
+        transition: all .3s;
+        @extend %formTextStyle;
+        
+        
+        &::placeholder{
+            @extend %formTextStyle;
+        }
+        &:not(:last-child){
+            margin-bottom: 2rem;
+            width: 81%;
+            @include responsive(750px){
+                width: 100%;
+            }
+        }
+        &:focus {
+            outline: none;
+            border-bottom: .4rem solid $color-secondary;
+        }
+    }
+
+    textarea.contact__form{
+        padding: 1rem;
+        width: 81%;
+        @include responsive(750px){
+            width: 100%;
+        }
+    }
+
+    &__opt{
+        @extend %formTextStyle;
+    }
+    
+    &__right{
+        .title{
+            color: white;
+            font-size: 2.8rem;
+        }
+        grid-column: 5/9;
+        grid-row: 1/2;
+        background-color: $color-secondary;
+        padding-left: 8rem;
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        height: 61rem;
+        width: 95%;
+        justify-self: end;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        transform: translateY(-4.5rem);
+        z-index: 2;
+        @include boxShadow(10px, .2);
+
+        @include responsive(950px){
+            padding-left: 6.8rem;
+        }
+        @include responsive(750px){
+            grid-column: 1/9;
+            grid-row: 2/3;
+            transform: translateY(0);
+            justify-self: auto;
+            width: 100%;
+        }
+
+        p{
+            &:not(:last-child){
+                margin-bottom: 3.5rem;
+            }
+        }        
+        
+    }
+    &__deco{
+        grid-column: 6/9;
+        grid-row: 1/2;
+        height: 20rem;
+        background-color: $color-primary;
+        align-self: end;
+    }
+}
+

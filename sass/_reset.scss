@@ -1,0 +1,38 @@
+$color-primary: #d83965;
+$color-secondary: #1fceea;
+$color-white: white;
+
+$font-primary: 'Quicksand', sans-serif;
+
+@mixin responsive($maxWidth) {
+    @media screen and (max-width: $maxWidth) {
+        @content   
+    }
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+
+    @include responsive(1750px){
+        font-size: 55%;
+    }
+}
+
+body{
+    font-family: $font-primary;
+    font-size: 1.5rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+@mixin boxShadow($blur, $opacity){
+    box-shadow: 2px 7px $blur 0px rgba(0,0,0,$opacity);
+}
+
+
